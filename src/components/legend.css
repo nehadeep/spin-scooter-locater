@@ -1,0 +1,18 @@
+.status-container{
+    position: absolute;
+    z-index: 20;
+    bottom: 150px;
+    right: 23px;
+    border: 1px solid gray;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+.round-full{
+    background-color: green;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 10px;
+    margin-right: 10px;
+}
