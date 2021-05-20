@@ -91,4 +91,20 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
   color: #fff;
 }
 
-
+footer{
+  display: flex;
+  border: 1px solid;
+  z-index: 1000;
+  background-color: black;
+  position: sticky;
+  height: 100px;
+  color: #fff;
+  bottom: 5px;
+  justify-content: center;
+  align-items: center;
+}
+footer .error{
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+}

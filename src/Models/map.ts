@@ -1,4 +1,9 @@
 
+export interface IFeature {
+    status: string;
+    id: number;
+}
+
 export interface IGeometry {
     type: string;
     coordinates: number[];
@@ -7,7 +12,7 @@ export interface IGeometry {
 export interface IGeoJson {
     type: string;
     geometry: IGeometry;
-    properties?: any;
+    properties?: IFeature;
     $key?: string;
 }
 

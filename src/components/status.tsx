@@ -1,23 +1,29 @@
 import scooter from "../scooter.png";
-import React from "react";
+import React, {FunctionComponent} from "react";
 import './status.css';
-const Status = ({selected, error}:any) =>{
+import {Colors} from "../Models/model";
+import {IFeature} from "../Models/map";
 
-    console.log("errpr", error, selected)
+interface IProps {
+    selected: IFeature;
+    error:boolean
+}
+const Status:FunctionComponent<IProps> = ({selected, error}:IProps) =>{
+    console.log("error", error)
 
     const style = () =>{
         if(selected.status==='available'){
-            return { backgroundColor: '#00FF00'} ;
+            return { backgroundColor:Colors.Available} ;
         } else if(selected.status==='not_available'){
-            return {backgroundColor: '#ff0000'}
+            return {backgroundColor: Colors.Not_Available}
         } else{
-            return {backgroundColor: '#3354FF'}
+            return {backgroundColor: Colors.Rented}
         }
     };
 
         return(
             <>
-                {!error? selected && <footer>
+                {selected && <footer>
                 <div className="status-display">
                     <img src={scooter} width="30" height="30" alt="scooter"/>
                     <div className="scooter-availability">
@@ -27,7 +33,7 @@ const Status = ({selected, error}:any) =>{
                         {selected.status.split('_').join(' ')}
                     </div>
                </div>
-                </footer>: <footer> <span className="error">Something went wrong.Please Try again!!.</span></footer>
+                </footer>
 
              }
             </>

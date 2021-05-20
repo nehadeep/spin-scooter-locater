@@ -1,10 +1,12 @@
+import {Colors} from "./Models/model";
+
 export const options = [
     {
         name:'Status',
         stops:[
-            ['Available', '#00FF00'],
-            ['Not Available', '#ff0000'],
-            ['Rented', '#3354FF']
+            ['Available', Colors.Available],
+            ['Not Available', Colors.Not_Available],
+            ['Rented', Colors.Rented]
         ]
     }
 ];

@@ -3,9 +3,6 @@ import React, {FunctionComponent, useEffect, useRef, useState} from "react";
 import mapboxgl from "mapbox-gl";
 import axios from "axios";
 
-import {GeoJson, IGeoJson} from "../Models/map"
-import {IMapSelected} from "../Models/model";
-
  const Map: FunctionComponent<any> = ({selectedMap,error}): any => {
     const mapDiv = useRef<HTMLDivElement>(null);
     let [map, setMap] = useState<any>(null);
@@ -59,6 +56,7 @@ import {IMapSelected} from "../Models/model";
                     });
 
                 } catch (e) {
+                    console.log("error",e)
                  error(true);
                 }
 
@@ -68,7 +66,7 @@ import {IMapSelected} from "../Models/model";
 
         !map && attachMap(setMap, mapDiv)
 
-    }, [map]);
+    }, [map,error]);
 
 
         const selectScooter =  (current:any) =>{
