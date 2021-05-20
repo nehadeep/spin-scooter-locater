@@ -9,7 +9,6 @@ interface IProps {
     error:boolean
 }
 const Status:FunctionComponent<IProps> = ({selected, error}:IProps) =>{
-    console.log("error", error)
 
     const style = () =>{
         if(selected.status==='available'){

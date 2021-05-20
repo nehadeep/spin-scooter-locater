@@ -2,13 +2,20 @@ import React, {FunctionComponent, useEffect, useRef, useState} from "react";
 
 import mapboxgl from "mapbox-gl";
 import axios from "axios";
+import {IFeature, IGeoJson} from "../Models/map";
 
- const Map: FunctionComponent<any> = ({selectedMap,error}): any => {
+interface IProps {
+    selectedMap: (props: IFeature)=> void;
+    error: (value: boolean) => void;
+}
+
+ const Map: FunctionComponent<IProps> = ({selectedMap,error}:IProps): any => {
     const mapDiv = useRef<HTMLDivElement>(null);
     let [map, setMap] = useState<any>(null);
 
 
     useEffect(() => {
+
         const attachMap = (setMap: React.Dispatch<React.SetStateAction<any>>, mapDiv: React.RefObject<HTMLDivElement>) => {
             const map = new mapboxgl.Map({
                 container: mapDiv.current || '', // NO ERROR
@@ -56,7 +63,7 @@ import axios from "axios";
                     });
 
                 } catch (e) {
-                    console.log("error",e)
+                    console.error("error",e);
                  error(true);
                 }
 
@@ -66,11 +73,10 @@ import axios from "axios";
 
         !map && attachMap(setMap, mapDiv)
 
-    }, [map,error]);
+    }, [map,error,selectedMap]);
 
 
-        const selectScooter =  (current:any) =>{
-            console.log("map-current", current)
+        const selectScooter =  (current:IGeoJson) =>{
 
            map.flyTo({
                 center: current.geometry['coordinates'],
@@ -86,13 +92,13 @@ import axios from "axios";
                      layers: ['locations']
                  });
                  if (feature.length) {
-                     selectScooter(feature[0]);
-                     selectedMap(feature[0].properties)
+                     selectScooter(feature[0] as IGeoJson);
+                     selectedMap(feature[0].properties as IFeature)
                  }
              })
 
 
-     },[map]);
+     },[map,selectedMap]);
 
     return (
         <div id="map" className="map-container" ref={mapDiv} />
