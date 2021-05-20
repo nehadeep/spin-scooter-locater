@@ -1,7 +1,9 @@
 import scooter from "../scooter.png";
 import React from "react";
 import './status.css';
-const Status = ({selected, error}) =>{
+const Status = ({selected, error}:any) =>{
+
+    console.log("errpr", error, selected)
 
     const style = () =>{
         if(selected.status==='available'){
